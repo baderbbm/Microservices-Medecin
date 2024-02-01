@@ -13,15 +13,15 @@ import java.util.List;
 @RestController
 public class MedecinNoteController {
 
-    private final MedecinNoteService medecinNoteService;
+	private final MedecinNoteService medecinNoteService;
 
-    @Autowired
-    public MedecinNoteController(MedecinNoteService medecinNoteService) {
-        this.medecinNoteService = medecinNoteService;
-    }
+	@Autowired
+	public MedecinNoteController(MedecinNoteService medecinNoteService) {
+		this.medecinNoteService = medecinNoteService;
+	}
 
-    @GetMapping("/notes/{patId}")
-    public List<MedecinNote> getNotesByPatId(@PathVariable int patId) {
-        return medecinNoteService.getNotesByPatId(patId);
-    }
+	@GetMapping("/medecin/notes/{patId}")
+	public List<MedecinNote> getNotesByPatId(@PathVariable int patId) {
+		return medecinNoteService.getNotesByPatId(patId);
+	}
 }
