@@ -1,0 +1,28 @@
+version: '3'
+services:
+  medecin:
+    image: medecin
+    ports:
+      - "8083:8083"
+    networks:
+      - my-network
+    environment:
+      - SERVER_PORT=8083
+      - SPRING_DATA_MONGODB_HOST=localhost
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_DATABASE=service
+    depends_on:
+      - gateway
+
+  gateway:
+    image: gateway
+    ports:
+      - "8081:8081"
+    networks:
+      - my-network
+    depends_on:
+      - front
+
+networks:
+  my-network:
+    driver: bridge
