@@ -2,10 +2,8 @@ package com.microservices.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.microservices.domain.MedecinNote;
 import com.microservices.repositories.MedecinNoteRepository;
-
 import java.util.List;
 
 @Service
@@ -21,5 +19,8 @@ public class MedecinNoteService {
     public List<MedecinNote> getNotesByPatId(int patId) {
         return medecinNoteRepository.findByPatId(patId);
     }
+    
+    public MedecinNote addMedecinNote(MedecinNote medecinNote) {
+        return medecinNoteRepository.save(medecinNote);
+    }
 }
-
