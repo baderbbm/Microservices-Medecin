@@ -37,4 +37,25 @@ public class MedecinNoteServiceTest {
         assertEquals("Le patient déclare qu'il ressent beaucoup de stress au travail. Il se plaint également que son audition est anormale dernièrement", notes.get(1).getNote());
         assertEquals("Le patient déclare avoir fait une réaction aux médicaments au cours des 3 derniers mois. Il remarque également que son audition continue d'être anormale", notes.get(2).getNote());
     }
+    
+    @Test
+    public void testAddMedecinNote() {
+        // Créez un objet Mock du repository
+        MedecinNoteRepository medecinNoteRepository = mock(MedecinNoteRepository.class);
+
+        // Créez un objet Service avec le repository Mock
+        MedecinNoteService medecinNoteService = new MedecinNoteService(medecinNoteRepository);
+
+        // Créez un objet MedecinNote à ajouter
+        MedecinNote medecinNoteToAdd = new MedecinNote("1", 1, "TestAddNote", "This is a test note to add");
+
+        // Définissez le comportement du repository Mock lors de l'appel à save
+        when(medecinNoteRepository.save(medecinNoteToAdd)).thenReturn(medecinNoteToAdd);
+
+        // Appelez la méthode du service que vous souhaitez tester
+        MedecinNote addedNote = medecinNoteService.addMedecinNote(medecinNoteToAdd);
+
+        // Vérifiez le résultat attendu
+        assertEquals(medecinNoteToAdd, addedNote);
+    }
 }
